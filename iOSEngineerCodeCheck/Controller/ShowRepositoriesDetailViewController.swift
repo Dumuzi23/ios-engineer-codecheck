@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController2: UIViewController {
+class ShowRepositoriesDetailViewController: UIViewController {
     
     @IBOutlet weak var ImgView: UIImageView!
     
@@ -21,14 +21,14 @@ class ViewController2: UIViewController {
     @IBOutlet weak var FrksLbl: UILabel!
     @IBOutlet weak var IsssLbl: UILabel!
     
-    var vc1: ViewController!
+    var searchRepositoriesVC: SearchRepositoriesViewController!
     let getRepositoriesImageManager = GetRepositoriesImageManager()
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let selectedIndex = vc1.idx else { return }
-        let repo = vc1.repo[selectedIndex]
+        guard let selectedIndex = searchRepositoriesVC.idx else { return }
+        let repo = searchRepositoriesVC.repo[selectedIndex]
         
         TtlLbl.text = "\(repo["full_name"] as? String ?? "")"
         LangLbl.text = "Written in \(repo["language"] as? String ?? "")"
@@ -36,7 +36,7 @@ class ViewController2: UIViewController {
         WchsLbl.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
         FrksLbl.text = "\(repo["forks_count"] as? Int ?? 0) forks"
         IsssLbl.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
-        getRepositoriesImageManager.getImage(vc1: vc1, vc2: self)
+        getRepositoriesImageManager.getImage(searchRepositoriesVC: searchRepositoriesVC, showRepositoriesDetailVC: self)
     }
 
 }
