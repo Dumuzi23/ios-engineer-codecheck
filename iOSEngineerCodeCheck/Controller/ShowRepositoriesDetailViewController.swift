@@ -34,6 +34,8 @@ class ShowRepositoriesDetailViewController: UIViewController {
         forkCountLabel.text = "\(repo["forks_count"] as? Int ?? 0) forks"
         openedIssueCountLabel.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
         getRepositoriesImageManager.getImage(searchRepositoriesVC: searchRepositoriesVC, showRepositoriesDetailVC: self)
+        
+        titleLabel.adjustsFontSizeToFitWidth = true
     }
 
 }
