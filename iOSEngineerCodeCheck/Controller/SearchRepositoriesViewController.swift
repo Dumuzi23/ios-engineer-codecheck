@@ -13,7 +13,7 @@ class SearchRepositoriesViewController: UITableViewController {
     @IBOutlet weak var repositoriesSearchBar: UISearchBar!
     
     var repositoriesInfo: [[String: Any]]=[]
-    var slectedRepositoryIndex: Int!
+    var slectedRepositoryIndex: Int?
     
     var githubSearchManager = GithubSearchManager()
     
@@ -27,7 +27,7 @@ class SearchRepositoriesViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Detail"{
-            let dtl = segue.destination as! ShowRepositoriesDetailViewController
+            guard let dtl = segue.destination as? ShowRepositoriesDetailViewController else { return }
             dtl.searchRepositoriesVC = self
         }
     }
