@@ -11,12 +11,12 @@ import UIKit
 class SearchRepositoriesViewController: UITableViewController {
 
     @IBOutlet weak var repositoriesSearchBar: UISearchBar!
-    
+
     var repositoriesInfo: [[String: Any]]=[]
     var slectedRepositoryIndex: Int?
-    
+
     var githubSearchManager = GithubSearchManager()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -24,20 +24,20 @@ class SearchRepositoriesViewController: UITableViewController {
         repositoriesSearchBar.delegate = self
         githubSearchManager.delegate = self
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Detail"{
             guard let dtl = segue.destination as? ShowRepositoriesDetailViewController else { return }
             dtl.searchRepositoriesVC = self
         }
     }
-    
-    //MARK: - TableView Datasource Methods
-    
+
+    // MARK: - TableView Datasource Methods
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repositoriesInfo.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         let rp = repositoriesInfo[indexPath.row]
@@ -46,58 +46,58 @@ class SearchRepositoriesViewController: UITableViewController {
         cell.tag = indexPath.row
         return cell
     }
-    
-    //MARK: - TableView Delegate Methods
-    
+
+    // MARK: - TableView Delegate Methods
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 画面遷移時に呼ばれる
         slectedRepositoryIndex = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
     }
-    
-    //MARK: - UIScrollViewDelegate
-    
+
+    // MARK: - UIScrollViewDelegate
+
     // スクロールしたとき、キーボードが閉じるようにする
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         repositoriesSearchBar.resignFirstResponder()
     }
-    
+
 }
 
-//MARK: - UISearchBar Delegate Methods
+// MARK: - UISearchBar Delegate Methods
 
 extension SearchRepositoriesViewController: UISearchBarDelegate {
-    
+
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         // ↓こうすれば初期のテキストを消せる
         searchBar.text = ""
         return true
     }
-    
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let word = searchBar.text {
             githubSearchManager.fetchRepositories(repoName: word)
         }
-        
+
         repositoriesSearchBar.resignFirstResponder()
     }
-    
+
 }
 
-//MARK: - GithubSearchManager Delegate Methods
+// MARK: - GithubSearchManager Delegate Methods
 
 extension SearchRepositoriesViewController: GithubSearchManagerDelegate {
-    
+
     func didUpdateRepositories(repositories: [[String: Any]]) {
         self.repositoriesInfo = repositories
-        
+
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
-    
+
     func didFailWithError(error: Error) {
         print(error)
     }
-    
+
 }
