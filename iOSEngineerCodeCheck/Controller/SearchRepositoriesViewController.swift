@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchRepositoriesViewController: UITableViewController, UISearchBarDelegate {
+class SearchRepositoriesViewController: UITableViewController {
 
     @IBOutlet weak var repositoriesSearchBar: UISearchBar!
     
@@ -23,18 +23,6 @@ class SearchRepositoriesViewController: UITableViewController, UISearchBarDelega
         repositoriesSearchBar.text = "GitHubのリポジトリを検索できるよー"
         repositoriesSearchBar.delegate = self
         githubSearchManager.delegate = self
-    }
-    
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        // ↓こうすれば初期のテキストを消せる
-        searchBar.text = ""
-        return true
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let word = searchBar.text {
-            githubSearchManager.fetchRepositories(repoName: word)
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -61,6 +49,22 @@ class SearchRepositoriesViewController: UITableViewController, UISearchBarDelega
         // 画面遷移時に呼ばれる
         slectedRepositoryIndex = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
+    }
+    
+}
+
+extension SearchRepositoriesViewController: UISearchBarDelegate {
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        // ↓こうすれば初期のテキストを消せる
+        searchBar.text = ""
+        return true
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let word = searchBar.text {
+            githubSearchManager.fetchRepositories(repoName: word)
+        }
     }
     
 }
