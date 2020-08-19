@@ -32,6 +32,8 @@ class SearchRepositoriesViewController: UITableViewController {
         }
     }
     
+    //MARK: - TableView Datasource Methods
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repositoriesInfo.count
     }
@@ -45,6 +47,8 @@ class SearchRepositoriesViewController: UITableViewController {
         return cell
     }
     
+    //MARK: - TableView Delegate Methods
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 画面遷移時に呼ばれる
         slectedRepositoryIndex = indexPath.row
@@ -52,6 +56,8 @@ class SearchRepositoriesViewController: UITableViewController {
     }
     
 }
+
+//MARK: - UISearchBar Delegate Methods
 
 extension SearchRepositoriesViewController: UISearchBarDelegate {
     
@@ -68,6 +74,8 @@ extension SearchRepositoriesViewController: UISearchBarDelegate {
     }
     
 }
+
+//MARK: - GithubSearchManager Delegate Methods
 
 extension SearchRepositoriesViewController: GithubSearchManagerDelegate {
     
