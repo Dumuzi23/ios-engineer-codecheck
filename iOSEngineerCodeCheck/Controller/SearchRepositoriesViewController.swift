@@ -13,7 +13,7 @@ class SearchRepositoriesViewController: UITableViewController {
     @IBOutlet weak var repositoriesSearchBar: UISearchBar!
     
     var repositoriesInfo: [[String: Any]]=[]
-    var slectedRepositoryIndex: Int!
+    var slectedRepositoryIndex: Int?
     
     var githubSearchManager = GithubSearchManager()
     
