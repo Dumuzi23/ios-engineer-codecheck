@@ -14,9 +14,7 @@ class SearchRepositoriesViewController: UITableViewController, UISearchBarDelega
     
     var repo: [[String: Any]]=[]
     
-    var task: URLSessionTask?
     var word: String!
-    var url: String!
     var idx: Int!
     
     var githubSearchManager = GithubSearchManager()
@@ -33,10 +31,6 @@ class SearchRepositoriesViewController: UITableViewController, UISearchBarDelega
         // ↓こうすれば初期のテキストを消せる
         searchBar.text = ""
         return true
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        task?.cancel()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
