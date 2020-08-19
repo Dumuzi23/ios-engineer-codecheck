@@ -13,8 +13,6 @@ class SearchRepositoriesViewController: UITableViewController, UISearchBarDelega
     @IBOutlet weak var repositoriesSearchBar: UISearchBar!
     
     var repositoriesInfo: [[String: Any]]=[]
-    
-    var word: String!
     var slectedRepositoryIndex: Int!
     
     var githubSearchManager = GithubSearchManager()
@@ -34,20 +32,16 @@ class SearchRepositoriesViewController: UITableViewController, UISearchBarDelega
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         if let word = searchBar.text {
             githubSearchManager.fetchRepositories(repoName: word)
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "Detail"{
             let dtl = segue.destination as! ShowRepositoriesDetailViewController
             dtl.searchRepositoriesVC = self
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,21 +49,18 @@ class SearchRepositoriesViewController: UITableViewController, UISearchBarDelega
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = UITableViewCell()
         let rp = repositoriesInfo[indexPath.row]
         cell.textLabel?.text = rp["full_name"] as? String ?? ""
         cell.detailTextLabel?.text = rp["language"] as? String ?? ""
         cell.tag = indexPath.row
         return cell
-        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 画面遷移時に呼ばれる
         slectedRepositoryIndex = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
-        
     }
     
 }
