@@ -55,6 +55,13 @@ class SearchRepositoriesViewController: UITableViewController {
         performSegue(withIdentifier: "Detail", sender: self)
     }
     
+    //MARK: - UIScrollViewDelegate
+    
+    // スクロールしたとき、キーボードが閉じるようにする
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        repositoriesSearchBar.resignFirstResponder()
+    }
+    
 }
 
 //MARK: - UISearchBar Delegate Methods
@@ -71,6 +78,8 @@ extension SearchRepositoriesViewController: UISearchBarDelegate {
         if let word = searchBar.text {
             githubSearchManager.fetchRepositories(repoName: word)
         }
+        
+        repositoriesSearchBar.resignFirstResponder()
     }
     
 }
