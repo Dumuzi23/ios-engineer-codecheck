@@ -9,7 +9,7 @@
 import UIKit
 
 class ShowRepositoriesDetailViewController: UIViewController {
-    
+
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
@@ -17,16 +17,16 @@ class ShowRepositoriesDetailViewController: UIViewController {
     @IBOutlet weak var watchCountLabel: UILabel!
     @IBOutlet weak var forkCountLabel: UILabel!
     @IBOutlet weak var openedIssueCountLabel: UILabel!
-    
+
     var searchRepositoriesVC: SearchRepositoriesViewController!
     let getRepositoriesImageManager = GetRepositoriesImageManager()
-        
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         guard let selectedIndex = searchRepositoriesVC.slectedRepositoryIndex else { return }
         let repo = searchRepositoriesVC.repositoriesInfo[selectedIndex]
-        
+
         titleLabel.text = "\(repo["full_name"] as? String ?? "")"
         languageLabel.text = "Written in \(repo["language"] as? String ?? "")"
         starCountLabel.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
@@ -34,7 +34,7 @@ class ShowRepositoriesDetailViewController: UIViewController {
         forkCountLabel.text = "\(repo["forks_count"] as? Int ?? 0) forks"
         openedIssueCountLabel.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
         getRepositoriesImageManager.getImage(searchRepositoriesVC: searchRepositoriesVC, showRepositoriesDetailVC: self)
-        
+
         titleLabel.adjustsFontSizeToFitWidth = true
     }
 
