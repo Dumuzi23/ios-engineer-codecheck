@@ -10,20 +10,20 @@ import UIKit
 
 class SearchRepositoriesViewController: UITableViewController, UISearchBarDelegate {
 
-    @IBOutlet weak var SchBr: UISearchBar!
+    @IBOutlet weak var repositoriesSearchBar: UISearchBar!
     
-    var repo: [[String: Any]]=[]
+    var repositoriesInfo: [[String: Any]]=[]
     
     var word: String!
-    var idx: Int!
+    var slectedRepositoryIndex: Int!
     
     var githubSearchManager = GithubSearchManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        SchBr.text = "GitHubのリポジトリを検索できるよー"
-        SchBr.delegate = self
+        repositoriesSearchBar.text = "GitHubのリポジトリを検索できるよー"
+        repositoriesSearchBar.delegate = self
         githubSearchManager.delegate = self
     }
     
@@ -51,13 +51,13 @@ class SearchRepositoriesViewController: UITableViewController, UISearchBarDelega
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repo.count
+        return repositoriesInfo.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell()
-        let rp = repo[indexPath.row]
+        let rp = repositoriesInfo[indexPath.row]
         cell.textLabel?.text = rp["full_name"] as? String ?? ""
         cell.detailTextLabel?.text = rp["language"] as? String ?? ""
         cell.tag = indexPath.row
@@ -67,7 +67,7 @@ class SearchRepositoriesViewController: UITableViewController, UISearchBarDelega
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 画面遷移時に呼ばれる
-        idx = indexPath.row
+        slectedRepositoryIndex = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
         
     }
@@ -77,7 +77,7 @@ class SearchRepositoriesViewController: UITableViewController, UISearchBarDelega
 extension SearchRepositoriesViewController: GithubSearchManagerDelegate {
     
     func didUpdateRepositories(repositories: [[String: Any]]) {
-        self.repo = repositories
+        self.repositoriesInfo = repositories
         
         DispatchQueue.main.async {
             self.tableView.reloadData()

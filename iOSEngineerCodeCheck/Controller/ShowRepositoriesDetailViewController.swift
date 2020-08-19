@@ -10,16 +10,13 @@ import UIKit
 
 class ShowRepositoriesDetailViewController: UIViewController {
     
-    @IBOutlet weak var ImgView: UIImageView!
-    
-    @IBOutlet weak var TtlLbl: UILabel!
-    
-    @IBOutlet weak var LangLbl: UILabel!
-    
-    @IBOutlet weak var StrsLbl: UILabel!
-    @IBOutlet weak var WchsLbl: UILabel!
-    @IBOutlet weak var FrksLbl: UILabel!
-    @IBOutlet weak var IsssLbl: UILabel!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var languageLabel: UILabel!
+    @IBOutlet weak var starCountLabel: UILabel!
+    @IBOutlet weak var watchCountLabel: UILabel!
+    @IBOutlet weak var forkCountLabel: UILabel!
+    @IBOutlet weak var openedIssueCountLabel: UILabel!
     
     var searchRepositoriesVC: SearchRepositoriesViewController!
     let getRepositoriesImageManager = GetRepositoriesImageManager()
@@ -27,15 +24,15 @@ class ShowRepositoriesDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let selectedIndex = searchRepositoriesVC.idx else { return }
-        let repo = searchRepositoriesVC.repo[selectedIndex]
+        guard let selectedIndex = searchRepositoriesVC.slectedRepositoryIndex else { return }
+        let repo = searchRepositoriesVC.repositoriesInfo[selectedIndex]
         
-        TtlLbl.text = "\(repo["full_name"] as? String ?? "")"
-        LangLbl.text = "Written in \(repo["language"] as? String ?? "")"
-        StrsLbl.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
-        WchsLbl.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
-        FrksLbl.text = "\(repo["forks_count"] as? Int ?? 0) forks"
-        IsssLbl.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
+        titleLabel.text = "\(repo["full_name"] as? String ?? "")"
+        languageLabel.text = "Written in \(repo["language"] as? String ?? "")"
+        starCountLabel.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
+        watchCountLabel.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
+        forkCountLabel.text = "\(repo["forks_count"] as? Int ?? 0) forks"
+        openedIssueCountLabel.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
         getRepositoriesImageManager.getImage(searchRepositoriesVC: searchRepositoriesVC, showRepositoriesDetailVC: self)
     }
 
