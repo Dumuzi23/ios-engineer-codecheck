@@ -30,7 +30,7 @@ class ShowRepositoriesDetailViewController: UIViewController {
         titleLabel.text = "\(repo["full_name"] as? String ?? "")"
         languageLabel.text = "Written in \(repo["language"] as? String ?? "")"
         starCountLabel.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
-        watchCountLabel.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
+        watchCountLabel.text = "\(repo["watchers_count"] as? Int ?? 0) watchers"
         forkCountLabel.text = "\(repo["forks_count"] as? Int ?? 0) forks"
         openedIssueCountLabel.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
         getRepositoriesImageManager.getImage(searchRepositoriesVC: searchRepositoriesVC, showRepositoriesDetailVC: self)
