@@ -12,16 +12,14 @@ import AlamofireImage
 class GetRepositoriesImageManager {
     
     func getImage(searchRepositoriesVC: SearchRepositoriesViewController, showRepositoriesDetailVC: ShowRepositoriesDetailViewController) {
-        guard let selectedIndex = searchRepositoriesVC.idx else { return }
-        let repo = searchRepositoriesVC.repo[selectedIndex]
+        guard let selectedIndex = searchRepositoriesVC.slectedRepositoryIndex else { return }
+        let repo = searchRepositoriesVC.repositoriesInfo[selectedIndex]
         
-        if let owner = repo["owner"] as? [String: Any] {
-            if let imageURL = owner["avatar_url"] as? String {
-                if let url = URL(string: imageURL) {
-                    showRepositoriesDetailVC.ImgView.af.setImage(withURL: url)
-                }
-            }
-        }
+        guard let owner = repo["owner"] as? [String: Any] else { return }
+        guard let imageURL = owner["avatar_url"] as? String else { return }
+        guard let url = URL(string: imageURL) else { return }
+        
+        showRepositoriesDetailVC.avatarImageView.af.setImage(withURL: url)
     }
     
 }

@@ -29,14 +29,12 @@ class GithubSearchManager {
         AF.request(urlString, method: .get).responseJSON { (response) in
             switch response.result {
             case .success:
-                if let safeData = response.data {
-                    if let obj = try! JSONSerialization.jsonObject(with: safeData) as? [String: Any] {
-                        if let items = obj["items"] as? [[String: Any]] {
-                            self.delegate?.didUpdateRepositories(repositories: items)
-                            print(items)
-                        }
-                    }
-                }
+                guard let safeData = response.data else { return }
+                guard let obj = try! JSONSerialization.jsonObject(with: safeData) as? [String: Any] else { return }
+                guard let items = obj["items"] as? [[String: Any]] else { return }
+                
+                self.delegate?.didUpdateRepositories(repositories: items)
+                print(items)
             case.failure(let error):
                 self.delegate?.didFailWithError(error: error)
             }
