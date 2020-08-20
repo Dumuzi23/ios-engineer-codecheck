@@ -49,18 +49,13 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xG0-oe-Vbm" firstAttribute="top" secondItem="yeb-0c-Vye" secondAttribute="top" constant="5" id="8bb-G7-F9X"/>
                             <constraint firstAttribute="bottom" secondItem="xG0-oe-Vbm" secondAttribute="bottom" constant="5" id="h0U-d5-o7W"/>
                             <constraint firstAttribute="trailing" secondItem="xG0-oe-Vbm" secondAttribute="trailing" constant="10" id="mAj-5w-qdn"/>
                             <constraint firstItem="xG0-oe-Vbm" firstAttribute="leading" secondItem="yeb-0c-Vye" secondAttribute="leading" constant="10" id="x6q-fc-Yyb"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="5"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
@@ -73,6 +68,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="avatarImageView" destination="0Wt-J2-LSH" id="AkW-m5-Lfy"/>
+                <outlet property="cellView" destination="yeb-0c-Vye" id="FyI-tJ-9H0"/>
                 <outlet property="languageLabel" destination="PQZ-ei-FVr" id="oU3-Xl-x8x"/>
                 <outlet property="titleLabel" destination="zdP-Ml-uWW" id="F7Q-eY-irX"/>
             </connections>

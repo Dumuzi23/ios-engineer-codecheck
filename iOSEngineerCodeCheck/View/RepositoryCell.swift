@@ -13,10 +13,14 @@ class RepositoryCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var cellView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        cellView.layer.cornerRadius = 10
+        cellView.layer.borderColor = UIColor.red.cgColor
+        cellView.layer.borderWidth = 1
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
