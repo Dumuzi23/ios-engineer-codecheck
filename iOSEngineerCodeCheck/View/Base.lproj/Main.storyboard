@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Search-->
         <scene sceneID="0Yw-Vc-k2Q">
             <objects>
                 <tableViewController id="MOh-CZ-3ki" customClass="SearchRepositoriesViewController" customModule="iOSEngineerCodeCheck" customModuleProvider="target" sceneMemberID="viewController">
@@ -25,7 +25,7 @@
                             <outlet property="delegate" destination="MOh-CZ-3ki" id="A6Y-Dm-cjQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="ktq-eC-ZBq"/>
+                    <navigationItem key="navigationItem" title="Search" id="ktq-eC-ZBq"/>
                     <connections>
                         <outlet property="repositoriesSearchBar" destination="6rq-CD-Hob" id="3gq-mK-4M3"/>
                         <segue destination="AHY-RL-7mG" kind="show" identifier="Detail" id="qqd-8W-4W1"/>
@@ -35,7 +35,7 @@
             </objects>
             <point key="canvasLocation" x="-498" y="137"/>
         </scene>
-        <!--Show Repositories Detail View Controller-->
+        <!--Repository Info-->
         <scene sceneID="JOC-74-7VT">
             <objects>
                 <viewController id="AHY-RL-7mG" customClass="ShowRepositoriesDetailViewController" customModule="iOSEngineerCodeCheck" customModuleProvider="target" sceneMemberID="viewController">
@@ -44,19 +44,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iim-eb-8Ad">
-                                <rect key="frame" x="20" y="74" width="335" height="335"/>
+                                <rect key="frame" x="20" y="126" width="335" height="335"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Iim-eb-8Ad" secondAttribute="height" multiplier="1:1" id="CoT-OC-9DA"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4q1-pG-WSB">
-                                <rect key="frame" x="161.5" y="437" width="52.5" height="33.5"/>
+                                <rect key="frame" x="161.5" y="489" width="52.5" height="33.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="oOe-O2-3RS">
-                                <rect key="frame" x="20" y="490.5" width="335" height="120"/>
+                                <rect key="frame" x="20" y="542.5" width="335" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3M-QO-Kom">
                                         <rect key="frame" x="0.0" y="0.0" width="79" height="20.5"/>
@@ -110,7 +110,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="srK-fe-i1b"/>
                     </view>
-                    <navigationItem key="navigationItem" id="J6o-vL-S1z"/>
+                    <navigationItem key="navigationItem" title="Repository Info" id="J6o-vL-S1z"/>
                     <connections>
                         <outlet property="avatarImageView" destination="Iim-eb-8Ad" id="dmH-tP-ZuI"/>
                         <outlet property="forkCountLabel" destination="ZMv-4f-X2V" id="i84-sH-c5t"/>
@@ -129,8 +129,8 @@
         <scene sceneID="hWi-qa-NBR">
             <objects>
                 <navigationController id="wFt-RI-uk4" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iRk-f0-Qkc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="iRk-f0-Qkc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
