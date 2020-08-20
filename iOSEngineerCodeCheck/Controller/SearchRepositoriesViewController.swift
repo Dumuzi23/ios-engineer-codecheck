@@ -44,7 +44,7 @@ class SearchRepositoriesViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! RepositoryCell
         let rp = repositoriesInfo[indexPath.row]
         cell.titleLabel.text = rp["full_name"] as? String ?? ""
-        cell.languageLabel.text = rp["language"] as? String ?? ""
+        cell.languageLabel.text = rp["language"] as? String ?? "Unknown"
         cell.tag = indexPath.row
         return cell
     }

@@ -18,9 +18,6 @@ class RepositoryCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        cellView.layer.cornerRadius = 10
-        cellView.layer.borderColor = UIColor.red.cgColor
-        cellView.layer.borderWidth = 1
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
