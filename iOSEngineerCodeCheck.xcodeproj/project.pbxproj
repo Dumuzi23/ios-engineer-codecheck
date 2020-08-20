@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2035854024EBF6A500D07A33 /* GithubSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2035853F24EBF6A500D07A33 /* GithubSearchManager.swift */; };
 		209C3D7524EC062700762E1D /* GetRepositoryImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209C3D7424EC062700762E1D /* GetRepositoryImageManager.swift */; };
+		209C3D7C24EE9AAF00762E1D /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209C3D7A24EE9AAF00762E1D /* RepositoryCell.swift */; };
+		209C3D7D24EE9AAF00762E1D /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209C3D7B24EE9AAF00762E1D /* RepositoryCell.xib */; };
 		5C7075E36FBE2E46911C5FDD /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6EBF13BBEB2B502970F238 /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework */; };
 		A625B4005BA4AC9BD9F83B24 /* Pods_iOSEngineerCodeCheck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A066093B9CD7180BE337F33 /* Pods_iOSEngineerCodeCheck.framework */; };
 		BF0A658D244F2A3B00280FA6 /* ShowRepositoriesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A658C244F2A3B00280FA6 /* ShowRepositoriesDetailViewController.swift */; };
@@ -45,6 +47,8 @@
 		128A05FF0C54F0D23C8520C9 /* Pods-iOSEngineerCodeCheck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck/Pods-iOSEngineerCodeCheck.release.xcconfig"; sourceTree = "<group>"; };
 		2035853F24EBF6A500D07A33 /* GithubSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubSearchManager.swift; sourceTree = "<group>"; };
 		209C3D7424EC062700762E1D /* GetRepositoryImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRepositoryImageManager.swift; sourceTree = "<group>"; };
+		209C3D7A24EE9AAF00762E1D /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
+		209C3D7B24EE9AAF00762E1D /* RepositoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
 		2A066093B9CD7180BE337F33 /* Pods_iOSEngineerCodeCheck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSEngineerCodeCheck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50065B43EC98B2D5E5FB3E41 /* Pods_iOSEngineerCodeCheckTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSEngineerCodeCheckTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F352E4CE37E750F513CCD55 /* Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				BFD945E4244DC5E80012785A /* Main.storyboard */,
+				209C3D7A24EE9AAF00762E1D /* RepositoryCell.swift */,
+				209C3D7B24EE9AAF00762E1D /* RepositoryCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -314,6 +320,7 @@
 				BFD945EB244DC5EB0012785A /* LaunchScreen.storyboard in Resources */,
 				BFD945E8244DC5EB0012785A /* Assets.xcassets in Resources */,
 				BFD945E6244DC5E80012785A /* Main.storyboard in Resources */,
+				209C3D7D24EE9AAF00762E1D /* RepositoryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				209C3D7524EC062700762E1D /* GetRepositoryImageManager.swift in Sources */,
+				209C3D7C24EE9AAF00762E1D /* RepositoryCell.swift in Sources */,
 				2035854024EBF6A500D07A33 /* GithubSearchManager.swift in Sources */,
 				BFD945E3244DC5E80012785A /* SearchRepositoriesViewController.swift in Sources */,
 				BF0A658D244F2A3B00280FA6 /* ShowRepositoriesDetailViewController.swift in Sources */,
