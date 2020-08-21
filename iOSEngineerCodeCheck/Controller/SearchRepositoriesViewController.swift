@@ -23,6 +23,8 @@ class SearchRepositoriesViewController: UITableViewController {
         repositoriesSearchBar.text = "GitHubのリポジトリを検索できるよー"
         repositoriesSearchBar.delegate = self
         githubSearchManager.delegate = self
+
+        tableView.register(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -39,10 +41,11 @@ class SearchRepositoriesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! RepositoryCell
         let rp = repositoriesInfo[indexPath.row]
-        cell.textLabel?.text = rp["full_name"] as? String ?? ""
-        cell.detailTextLabel?.text = rp["language"] as? String ?? ""
+        cell.titleLabel.text = rp["full_name"] as? String ?? ""
+        cell.languageLabel.text = rp["language"] as? String ?? "Unknown"
+        cell.starsCountLabel.text = "\(rp["stargazers_count"] as? Int ?? 0)"
         cell.tag = indexPath.row
         return cell
     }
