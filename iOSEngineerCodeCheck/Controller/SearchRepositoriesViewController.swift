@@ -24,11 +24,11 @@ class SearchRepositoriesViewController: UITableViewController {
         repositoriesSearchBar.delegate = self
         githubSearchManager.delegate = self
 
-        tableView.register(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+        tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Detail"{
+        if segue.identifier == K.detailSegue {
             guard let dtl = segue.destination as? ShowRepositoriesDetailViewController else { return }
             dtl.searchRepositoriesVC = self
         }
@@ -41,11 +41,11 @@ class SearchRepositoriesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! RepositoryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! RepositoryCell
         let rp = repositoriesInfo[indexPath.row]
-        cell.titleLabel.text = rp["full_name"] as? String ?? ""
-        cell.languageLabel.text = rp["language"] as? String ?? "Unknown"
-        cell.starsCountLabel.text = "\(rp["stargazers_count"] as? Int ?? 0)"
+        cell.titleLabel.text = rp[K.parseData.title] as? String ?? ""
+        cell.languageLabel.text = rp[K.parseData.language] as? String ?? "Unknown"
+        cell.starsCountLabel.text = "\(rp[K.parseData.starsCount] as? Int ?? 0)"
         cell.tag = indexPath.row
         return cell
     }
@@ -55,7 +55,7 @@ class SearchRepositoriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 画面遷移時に呼ばれる
         slectedRepositoryIndex = indexPath.row
-        performSegue(withIdentifier: "Detail", sender: self)
+        performSegue(withIdentifier: K.detailSegue, sender: self)
     }
 
     // MARK: - UIScrollViewDelegate
