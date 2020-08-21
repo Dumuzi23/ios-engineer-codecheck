@@ -12,7 +12,7 @@ class RepositoryCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var starsCountLabel: UILabel!
     @IBOutlet weak var cellView: UIView!
 
     override func awakeFromNib() {
