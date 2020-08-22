@@ -19,7 +19,7 @@ class ShowRepositoriesDetailViewController: UIViewController {
     @IBOutlet weak var openedIssueCountLabel: UILabel!
 
     var repositoryDetail: RepositoryDetailModel?
-    let getRepositoriesImageManager = GetRepositoriesImageManager()
+    private let getRepositoriesImageManager = GetRepositoriesImageManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()

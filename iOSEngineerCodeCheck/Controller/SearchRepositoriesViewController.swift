@@ -12,11 +12,11 @@ class SearchRepositoriesViewController: UITableViewController {
 
     @IBOutlet weak var repositoriesSearchBar: UISearchBar!
 
-    var repositoriesInfo: [[String: Any]]=[]
-    var selectedRepositoryDatail: RepositoryDetailModel?
+    private var repositoriesInfo: [[String: Any]]=[]
+    private var selectedRepositoryDatail: RepositoryDetailModel?
 
-    var githubSearchManager = GithubSearchManager()
-    var getSelectedRepositoryDetailManager = GetSelectedRepositoryDetailManager()
+    private var githubSearchManager = GithubSearchManager()
+    private var getSelectedRepositoryDetailManager = GetSelectedRepositoryDetailManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()

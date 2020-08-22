@@ -15,7 +15,7 @@ protocol GithubSearchManagerDelegate: class {
 }
 
 class GithubSearchManager {
-    let searchURL = "https://api.github.com/search/repositories?"
+    private let searchURL = "https://api.github.com/search/repositories?"
 
     weak var delegate: GithubSearchManagerDelegate?
 
@@ -25,7 +25,7 @@ class GithubSearchManager {
         performRequest(with: urlString)
     }
 
-    func performRequest(with urlString: String) {
+    private func performRequest(with urlString: String) {
         AF.request(urlString, method: .get).responseJSON { (response) in
             switch response.result {
             case .success:
