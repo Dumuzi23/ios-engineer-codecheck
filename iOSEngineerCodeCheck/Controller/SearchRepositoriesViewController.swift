@@ -13,7 +13,7 @@ class SearchRepositoriesViewController: UITableViewController {
     @IBOutlet weak var repositoriesSearchBar: UISearchBar!
 
     var repositoriesInfo: [[String: Any]]=[]
-    var slectedRepositoryIndex: Int?
+    var selectedRepositoryDatail: RepositoryDetailModel?
 
     var githubSearchManager = GithubSearchManager()
     var getSelectedRepositoryDetailManager = GetSelectedRepositoryDetailManager()
@@ -31,7 +31,7 @@ class SearchRepositoriesViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.detailSegue {
             guard let dtl = segue.destination as? ShowRepositoriesDetailViewController else { return }
-            dtl.searchRepositoriesVC = self
+            dtl.repositoryDetail = selectedRepositoryDatail
         }
     }
 
@@ -56,7 +56,8 @@ class SearchRepositoriesViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 画面遷移時に呼ばれる
-        slectedRepositoryIndex = indexPath.row
+        selectedRepositoryDatail = getSelectedRepositoryDetailManager.getDetail(repositoryDetailArray: repositoriesInfo, selectedIndex: indexPath.row)
+
         performSegue(withIdentifier: K.detailSegue, sender: self)
     }
 

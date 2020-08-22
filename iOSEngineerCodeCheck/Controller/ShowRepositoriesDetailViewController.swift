@@ -18,22 +18,21 @@ class ShowRepositoriesDetailViewController: UIViewController {
     @IBOutlet weak var forkCountLabel: UILabel!
     @IBOutlet weak var openedIssueCountLabel: UILabel!
 
-    var searchRepositoriesVC: SearchRepositoriesViewController!
+    var repositoryDetail: RepositoryDetailModel?
     let getRepositoriesImageManager = GetRepositoriesImageManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let selectedIndex = searchRepositoriesVC.slectedRepositoryIndex else { return }
-        let repo = searchRepositoriesVC.repositoriesInfo[selectedIndex]
+        guard let detail = repositoryDetail else { return }
 
-        titleLabel.text = "\(repo[K.parseData.title] as? String ?? "")"
-        languageLabel.text = "Written in \(repo[K.parseData.language] as? String ?? "")"
-        starCountLabel.text = "\(repo[K.parseData.starsCount] as? Int ?? 0) stars"
-        watchCountLabel.text = "\(repo[K.parseData.watchersCount] as? Int ?? 0) watchers"
-        forkCountLabel.text = "\(repo[K.parseData.forksCount] as? Int ?? 0) forks"
-        openedIssueCountLabel.text = "\(repo[K.parseData.openIssuesCount] as? Int ?? 0) open issues"
-        getRepositoriesImageManager.getImage(searchRepositoriesVC: searchRepositoriesVC, showRepositoriesDetailVC: self)
+        titleLabel.text = detail.title
+        languageLabel.text = "Written in \(detail.language)"
+        starCountLabel.text = "\(detail.starsCount) stars"
+        watchCountLabel.text = "\(detail.watchersCount) watchers"
+        forkCountLabel.text = "\(detail.forksCount) forks"
+        openedIssueCountLabel.text = "\(detail.openIssuesCount) open issues"
+        getRepositoriesImageManager.getImage(with: avatarImageView, urlString: detail.avatarImageUrlString)
 
         titleLabel.adjustsFontSizeToFitWidth = true
     }
