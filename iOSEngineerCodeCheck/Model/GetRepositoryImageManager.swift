@@ -11,15 +11,9 @@ import AlamofireImage
 
 class GetRepositoriesImageManager {
 
-    func getImage(searchRepositoriesVC: SearchRepositoriesViewController, showRepositoriesDetailVC: ShowRepositoriesDetailViewController) {
-        guard let selectedIndex = searchRepositoriesVC.slectedRepositoryIndex else { return }
-        let repo = searchRepositoriesVC.repositoriesInfo[selectedIndex]
-
-        guard let owner = repo["owner"] as? [String: Any] else { return }
-        guard let imageURL = owner["avatar_url"] as? String else { return }
-        guard let url = URL(string: imageURL) else { return }
-
-        showRepositoriesDetailVC.avatarImageView.af.setImage(withURL: url)
+    func getImage(with image: UIImageView, urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        image.af.setImage(withURL: url)
     }
 
 }

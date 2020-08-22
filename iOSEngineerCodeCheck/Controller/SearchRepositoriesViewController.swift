@@ -12,10 +12,11 @@ class SearchRepositoriesViewController: UITableViewController {
 
     @IBOutlet weak var repositoriesSearchBar: UISearchBar!
 
-    var repositoriesInfo: [[String: Any]]=[]
-    var slectedRepositoryIndex: Int?
+    private var repositoriesInfo: [[String: Any]]=[]
+    private var selectedRepositoryDatail: RepositoryDetailModel?
 
-    var githubSearchManager = GithubSearchManager()
+    private var githubSearchManager = GithubSearchManager()
+    private var getSelectedRepositoryDetailManager = GetSelectedRepositoryDetailManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +25,13 @@ class SearchRepositoriesViewController: UITableViewController {
         repositoriesSearchBar.delegate = self
         githubSearchManager.delegate = self
 
-        tableView.register(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+        tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Detail"{
+        if segue.identifier == K.detailSegue {
             guard let dtl = segue.destination as? ShowRepositoriesDetailViewController else { return }
-            dtl.searchRepositoriesVC = self
+            dtl.repositoryDetail = selectedRepositoryDatail
         }
     }
 
@@ -41,11 +42,12 @@ class SearchRepositoriesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! RepositoryCell
-        let rp = repositoriesInfo[indexPath.row]
-        cell.titleLabel.text = rp["full_name"] as? String ?? ""
-        cell.languageLabel.text = rp["language"] as? String ?? "Unknown"
-        cell.starsCountLabel.text = "\(rp["stargazers_count"] as? Int ?? 0)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! RepositoryCell
+        let repositoryDetail = getSelectedRepositoryDetailManager.getDetail(repositoryDetailArray: repositoriesInfo, selectedIndex: indexPath.row)
+
+        cell.titleLabel.text = repositoryDetail.title
+        cell.languageLabel.text = repositoryDetail.language
+        cell.starsCountLabel.text = "\(repositoryDetail.starsCount)"
         cell.tag = indexPath.row
         return cell
     }
@@ -54,8 +56,9 @@ class SearchRepositoriesViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 画面遷移時に呼ばれる
-        slectedRepositoryIndex = indexPath.row
-        performSegue(withIdentifier: "Detail", sender: self)
+        selectedRepositoryDatail = getSelectedRepositoryDetailManager.getDetail(repositoryDetailArray: repositoriesInfo, selectedIndex: indexPath.row)
+
+        performSegue(withIdentifier: K.detailSegue, sender: self)
     }
 
     // MARK: - UIScrollViewDelegate
