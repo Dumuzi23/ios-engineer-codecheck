@@ -13,6 +13,7 @@ class GetRepositoriesImageManager {
 
     func getImage(with image: UIImageView, urlString: String) {
         guard let url = URL(string: urlString) else { return }
+
         image.af.setImage(withURL: url)
     }
 

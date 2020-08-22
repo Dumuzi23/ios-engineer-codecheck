@@ -26,4 +26,5 @@ class GetSelectedRepositoryDetailManager {
 
         return selectedRepositoryDetail
     }
+
 }

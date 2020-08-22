@@ -15,6 +15,7 @@ protocol GithubSearchManagerDelegate: class {
 }
 
 class GithubSearchManager {
+
     private let searchURL = "https://api.github.com/search/repositories?"
 
     weak var delegate: GithubSearchManagerDelegate?
@@ -35,7 +36,7 @@ class GithubSearchManager {
 
                 self.delegate?.didUpdateRepositories(repositories: items)
                 print(items)
-            case.failure(let error):
+            case .failure(let error):
                 self.delegate?.didFailWithError(error: error)
             }
         }

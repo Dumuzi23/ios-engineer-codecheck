@@ -20,7 +20,7 @@ class SearchRepositoriesViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         repositoriesSearchBar.text = "GitHubのリポジトリを検索できるよー"
         repositoriesSearchBar.delegate = self
         githubSearchManager.delegate = self
@@ -35,7 +35,7 @@ class SearchRepositoriesViewController: UITableViewController {
         }
     }
 
-    // MARK: - TableView Datasource Methods
+    // MARK: TableView Datasource Methods
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repositoriesInfo.count
@@ -52,7 +52,7 @@ class SearchRepositoriesViewController: UITableViewController {
         return cell
     }
 
-    // MARK: - TableView Delegate Methods
+    // MARK: TableView Delegate Methods
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 画面遷移時に呼ばれる
@@ -61,10 +61,10 @@ class SearchRepositoriesViewController: UITableViewController {
         performSegue(withIdentifier: K.detailSegue, sender: self)
     }
 
-    // MARK: - UIScrollViewDelegate
+    // MARK: UIScrollViewDelegate
 
-    // スクロールしたとき、キーボードが閉じるようにする
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        // スクロールしたとき、キーボードが閉じるようにする
         repositoriesSearchBar.resignFirstResponder()
     }
 
@@ -84,7 +84,7 @@ extension SearchRepositoriesViewController: UISearchBarDelegate {
         if let word = searchBar.text {
             githubSearchManager.fetchRepositories(repoName: word)
         }
-
+        // 検索後はキーボードが閉じるようにする
         repositoriesSearchBar.resignFirstResponder()
     }
 
