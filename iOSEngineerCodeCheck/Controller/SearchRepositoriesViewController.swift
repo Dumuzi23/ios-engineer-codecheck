@@ -12,38 +12,38 @@ class SearchRepositoriesViewController: UITableViewController {
 
     @IBOutlet weak var repositoriesSearchBar: UISearchBar!
 
-    private var repositoriesInfo: [[String: Any]]=[]
+    private var repositoriesArray: [[String: Any]]=[]
     private var selectedRepositoryDatail: RepositoryDetailModel?
 
-    private var githubSearchManager = GithubSearchManager()
+    private var searchRepositoriesManager = SearchRepositoriesManager()
     private var getSelectedRepositoryDetailManager = GetSelectedRepositoryDetailManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         repositoriesSearchBar.text = "GitHubのリポジトリを検索できるよー"
         repositoriesSearchBar.delegate = self
-        githubSearchManager.delegate = self
+        searchRepositoriesManager.delegate = self
 
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.detailSegue {
-            guard let dtl = segue.destination as? ShowRepositoriesDetailViewController else { return }
+            guard let dtl = segue.destination as? ShowRepositoryDetailViewController else { return }
             dtl.repositoryDetail = selectedRepositoryDatail
         }
     }
 
-    // MARK: - TableView Datasource Methods
+    // MARK: TableView Datasource Methods
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repositoriesInfo.count
+        return repositoriesArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! RepositoryCell
-        let repositoryDetail = getSelectedRepositoryDetailManager.getDetail(repositoryDetailArray: repositoriesInfo, selectedIndex: indexPath.row)
+        let repositoryDetail = getSelectedRepositoryDetailManager.getDetail(repositories: repositoriesArray, selectedIndex: indexPath.row)
 
         cell.titleLabel.text = repositoryDetail.title
         cell.languageLabel.text = repositoryDetail.language
@@ -52,19 +52,19 @@ class SearchRepositoriesViewController: UITableViewController {
         return cell
     }
 
-    // MARK: - TableView Delegate Methods
+    // MARK: TableView Delegate Methods
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 画面遷移時に呼ばれる
-        selectedRepositoryDatail = getSelectedRepositoryDetailManager.getDetail(repositoryDetailArray: repositoriesInfo, selectedIndex: indexPath.row)
+        selectedRepositoryDatail = getSelectedRepositoryDetailManager.getDetail(repositories: repositoriesArray, selectedIndex: indexPath.row)
 
         performSegue(withIdentifier: K.detailSegue, sender: self)
     }
 
-    // MARK: - UIScrollViewDelegate
+    // MARK: UIScrollViewDelegate
 
-    // スクロールしたとき、キーボードが閉じるようにする
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        // スクロールしたとき、キーボードが閉じるようにする
         repositoriesSearchBar.resignFirstResponder()
     }
 
@@ -82,9 +82,9 @@ extension SearchRepositoriesViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let word = searchBar.text {
-            githubSearchManager.fetchRepositories(repoName: word)
+            searchRepositoriesManager.fetchRepositories(repoName: word)
         }
-
+        // 検索後はキーボードが閉じるようにする
         repositoriesSearchBar.resignFirstResponder()
     }
 
@@ -92,10 +92,10 @@ extension SearchRepositoriesViewController: UISearchBarDelegate {
 
 // MARK: - GithubSearchManager Delegate Methods
 
-extension SearchRepositoriesViewController: GithubSearchManagerDelegate {
+extension SearchRepositoriesViewController: SearchRepositoriesManagerDelegate {
 
     func didUpdateRepositories(repositories: [[String: Any]]) {
-        self.repositoriesInfo = repositories
+        self.repositoriesArray = repositories
 
         DispatchQueue.main.async {
             self.tableView.reloadData()
