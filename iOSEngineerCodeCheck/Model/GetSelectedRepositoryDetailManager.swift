@@ -16,7 +16,7 @@ class GetSelectedRepositoryDetailManager {
         let stars = repositories[selectedIndex][K.parseData.starsCount] as? Int ?? 0
         let watchers = repositories[selectedIndex][K.parseData.watchersCount] as? Int ?? 0
         let forks = repositories[selectedIndex][K.parseData.forksCount] as? Int ?? 0
-        let openIssue = repositories[selectedIndex][K.parseData.forksCount] as? Int ?? 0
+        let openIssue = repositories[selectedIndex][K.parseData.openIssuesCount] as? Int ?? 0
 
         // アバター画像の情報だけは階層が違うので、追加の処理が必要
         guard let owner = repositories[selectedIndex]["owner"] as? [String: Any] else { fatalError("failed get avatarImageURL.") }
