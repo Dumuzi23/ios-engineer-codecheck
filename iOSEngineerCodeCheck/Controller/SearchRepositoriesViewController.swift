@@ -16,6 +16,7 @@ class SearchRepositoriesViewController: UITableViewController {
     var slectedRepositoryIndex: Int?
 
     var githubSearchManager = GithubSearchManager()
+    var getSelectedRepositoryDetailManager = GetSelectedRepositoryDetailManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +43,11 @@ class SearchRepositoriesViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! RepositoryCell
-        let rp = repositoriesInfo[indexPath.row]
-        cell.titleLabel.text = rp[K.parseData.title] as? String ?? ""
-        cell.languageLabel.text = rp[K.parseData.language] as? String ?? "Unknown"
-        cell.starsCountLabel.text = "\(rp[K.parseData.starsCount] as? Int ?? 0)"
+        let repositoryDetail = getSelectedRepositoryDetailManager.getDetail(repositoryDetailArray: repositoriesInfo, selectedIndex: indexPath.row)
+
+        cell.titleLabel.text = repositoryDetail.title
+        cell.languageLabel.text = repositoryDetail.language
+        cell.starsCountLabel.text = "\(repositoryDetail.starsCount)"
         cell.tag = indexPath.row
         return cell
     }

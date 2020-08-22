@@ -21,7 +21,7 @@ struct K {
         static let watchersCount = "watchers_count"
         static let forksCount = "forks_count"
         static let openIssuesCount = "open_issues_count"
-        static let avatarImage = "avatar_image"
+        static let avatarImage = "avatar_url"
 
     }
 
