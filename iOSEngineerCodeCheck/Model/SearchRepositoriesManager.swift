@@ -9,16 +9,16 @@
 import Foundation
 import Alamofire
 
-protocol GithubSearchManagerDelegate: class {
+protocol SearchRepositoriesManagerDelegate: class {
     func didUpdateRepositories(repositories: [[String: Any]])
     func didFailWithError(error: Error)
 }
 
-class GithubSearchManager {
+class SearchRepositoriesManager {
 
     private let searchURL = "https://api.github.com/search/repositories?"
 
-    weak var delegate: GithubSearchManagerDelegate?
+    weak var delegate: SearchRepositoriesManagerDelegate?
 
     func fetchRepositories(repoName: String) {
         let urlString = "\(searchURL)q=\(repoName)"
