@@ -10,34 +10,60 @@ import XCTest
 
 class iOSEngineerCodeCheckUITests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+    override func setUp() {
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        XCUIApplication().launch()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testSearch() {
         let app = XCUIApplication()
-        app.launch()
+        print(app.debugDescription)
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-                XCUIApplication().launch()
-            }
+        XCTContext.runActivity(named: "検索ワードの入力") { _ in
+            let searchField = app.searchFields.element(boundBy: 0)
+            XCTAssert(searchField.exists)
+            searchField.tap()
+            searchField.typeText("Swift")
         }
+
+        XCTContext.runActivity(named: "検索を行う") { _ in
+            let keybord = app.keyboards.element(boundBy: 0)
+            XCTAssert(keybord.exists)
+
+            let searchButton = app.buttons["Search"]
+            XCTAssert(searchButton.exists)
+            searchButton.tap()
+        }
+        XCTContext.runActivity(named: "検索結果が表示されているか") { _ in
+            let firstCell = app.cells.element(boundBy: 0)
+            XCTAssert(firstCell.waitForExistence(timeout: 3))
+
+            let firstText = firstCell.children(matching: .staticText).element(boundBy: 0)
+            let secondText = firstCell.children(matching: .staticText).element(boundBy: 1)
+            let thirdText = firstCell.children(matching: .staticText).element(boundBy: 2)
+            XCTAssert(firstText.exists)
+            XCTAssert(secondText.exists)
+            XCTAssert(thirdText.exists)
+
+            firstCell.tap()
+        }
+
+        XCTContext.runActivity(named: "詳細情報が表示されているか") { _  in
+            let image = app.images.element(boundBy: 0)
+            let title = app.staticTexts.element(boundBy: 1)
+            let language = app.staticTexts.element(boundBy: 2)
+            let stars = app.staticTexts.element(boundBy: 3)
+            let forks = app.staticTexts.element(boundBy: 4)
+            let openIssues = app.staticTexts.element(boundBy: 5)
+
+            XCTAssert(image.waitForExistence(timeout: 1))
+            XCTAssert(title.waitForExistence(timeout: 1))
+            XCTAssert(language.waitForExistence(timeout: 1))
+            XCTAssert(stars.waitForExistence(timeout: 1))
+            XCTAssert(forks.waitForExistence(timeout: 1))
+            XCTAssert(openIssues.waitForExistence(timeout: 1))
+        }
+
     }
+
 }
