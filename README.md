@@ -41,12 +41,12 @@ Issues を確認した上、本プロジェクトを [**Duplicate** してくだ
 ![動作イメージ](README_Images/NewApp.gif)
 
 ### 使用方法
-`git clone https://github.com/Dumuzi23/ios-engineer-codecheck.git`のみでお使いいただけます
-（`Pod/`を`.gitignore`に含めていません）
+`git clone https://github.com/Dumuzi23/ios-engineer-codecheck.git`のみでお使いいただけます  
+（`Pods/`を`.gitignore`に含めていません）
 
 ### 工夫したところ
 - カスタムセルの使用
-- 正式なwatcher数は初期のURLだと取得できないため(https://github.community/t/api-is-very-confusing-by-listing-stars-count-for-watchers-count-on-all-repos/13817)、別のURLを使用して取得
+- 正式なwatcher数は初期のURLだと取得できないため、別のURLを使用して取得(https://github.community/t/api-is-very-confusing-by-listing-stars-count-for-watchers-count-on-all-repos/13817)
 - CocoaPodsの使用
 - SwiftLintを使用したコードスタイルの管理
 
