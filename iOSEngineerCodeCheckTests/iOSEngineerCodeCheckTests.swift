@@ -11,23 +11,20 @@ import XCTest
 
 class iOSEngineerCodeCheckTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    let getSelectedRepositoryDetailManager = GetSelectedRepositoryDetailManager()
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    let repositoriesForSuccess = [[K.parseData.title: "sampleRepo", K.parseData.language: "Japanese", K.parseData.starsCount: 1, K.parseData.forksCount: 2, K.parseData.openIssuesCount: 3, "owner": [K.parseData.avatarImage: "abcde"]], ["a": "b"]]
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    func testGetSelectedRepositoryDetailManager() {
+        let selectedRepositoryDetail = getSelectedRepositoryDetailManager.getDetail(repositories: repositoriesForSuccess, selectedIndex: 0)
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        XCTContext.runActivity(named: "GetSelectedRepositoryDetailManagerのgetDetailメソッドがRepositoryDetailModelを正確に返すか検証") { _ in
+            XCTAssertEqual(selectedRepositoryDetail.title, "sampleRepo")
+            XCTAssertEqual(selectedRepositoryDetail.language, "Japanese")
+            XCTAssertEqual(selectedRepositoryDetail.starsCount, 1)
+            XCTAssertEqual(selectedRepositoryDetail.forksCount, 2)
+            XCTAssertEqual(selectedRepositoryDetail.openIssuesCount, 3)
+            XCTAssertEqual(selectedRepositoryDetail.avatarImageUrlString, "abcde")
         }
     }
 
