@@ -45,7 +45,7 @@ class SearchRepositoriesViewController: UITableViewController {
         let repository = repositoriesArray[indexPath.row]
 
         cell.titleLabel.text = repository[K.parseData.title] as? String ?? ""
-        cell.languageLabel.text = repository[K.parseData.language] as? String ?? ""
+        cell.languageLabel.text = repository[K.parseData.language] as? String ?? "Unknown"
         cell.starsCountLabel.text = "\(repository[K.parseData.starsCount] as? Int ?? 0)"
         cell.tag = indexPath.row
         return cell
