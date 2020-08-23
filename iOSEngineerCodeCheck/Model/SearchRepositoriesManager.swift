@@ -35,7 +35,6 @@ class SearchRepositoriesManager {
                 guard let items = obj["items"] as? [[String: Any]] else { return }
 
                 self.delegate?.didUpdateRepositories(repositories: items)
-                print(items)
             case .failure(let error):
                 self.delegate?.didFailWithError(error: error)
             }

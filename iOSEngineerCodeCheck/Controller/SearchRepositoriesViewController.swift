@@ -36,7 +36,6 @@ class SearchRepositoriesViewController: UITableViewController {
     }
 
     // MARK: TableView Datasource Methods
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repositoriesArray.count
     }
@@ -46,23 +45,20 @@ class SearchRepositoriesViewController: UITableViewController {
         let repository = repositoriesArray[indexPath.row]
 
         cell.titleLabel.text = repository[K.parseData.title] as? String ?? ""
-        cell.languageLabel.text = repository[K.parseData.language] as? String ?? ""
+        cell.languageLabel.text = repository[K.parseData.language] as? String ?? "Unknown"
         cell.starsCountLabel.text = "\(repository[K.parseData.starsCount] as? Int ?? 0)"
         cell.tag = indexPath.row
         return cell
     }
 
     // MARK: TableView Delegate Methods
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 画面遷移時に呼ばれる
         selectedRepositoryDatail = getSelectedRepositoryDetailManager.getDetail(repositories: repositoriesArray, selectedIndex: indexPath.row)
 
         performSegue(withIdentifier: K.detailSegue, sender: self)
     }
 
     // MARK: UIScrollViewDelegate
-
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         // スクロールしたとき、キーボードが閉じるようにする
         repositoriesSearchBar.resignFirstResponder()
@@ -71,11 +67,9 @@ class SearchRepositoriesViewController: UITableViewController {
 }
 
 // MARK: - UISearchBar Delegate Methods
-
 extension SearchRepositoriesViewController: UISearchBarDelegate {
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        // ↓こうすれば初期のテキストを消せる
         searchBar.text = ""
         return true
     }
@@ -91,15 +85,11 @@ extension SearchRepositoriesViewController: UISearchBarDelegate {
 }
 
 // MARK: - GithubSearchManager Delegate Methods
-
 extension SearchRepositoriesViewController: SearchRepositoriesManagerDelegate {
 
     func didUpdateRepositories(repositories: [[String: Any]]) {
         self.repositoriesArray = repositories
-
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
     }
 
     func didFailWithError(error: Error) {

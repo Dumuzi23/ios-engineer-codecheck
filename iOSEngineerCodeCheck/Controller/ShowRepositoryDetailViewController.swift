@@ -32,10 +32,10 @@ class ShowRepositoryDetailViewController: UIViewController {
         starsCountLabel.text = "\(detail.starsCount) stars"
         forksCountLabel.text = "\(detail.forksCount) forks"
         openIssuesCountLabel.text = "\(detail.openIssuesCount) open issues"
-        self.getAvatarImageManager.setImage(with: self.avatarImageView, urlString: detail.avatarImageUrlString)
+        getAvatarImageManager.setImage(with: avatarImageView, urlString: detail.avatarImageUrlString)
 
         // watchersCountを取得するには、別のURLを使用してAPIを叩く必要があるので、そのためのメソッドを使用する
-        self.getWatchersCountManager.setWatchersCount(label: self.watchersCountLabel, repositoryTitle: detail.title)
+        getWatchersCountManager.setWatchersCount(label: watchersCountLabel, repositoryTitle: detail.title)
 
         titleLabel.adjustsFontSizeToFitWidth = true
     }
