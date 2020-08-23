@@ -9,7 +9,7 @@
 import Foundation
 import AlamofireImage
 
-class GetRepositoryImageManager {
+class GetAvatarImageManager {
 
     func setImage(with image: UIImageView, urlString: String) {
         guard let url = URL(string: urlString) else { return }

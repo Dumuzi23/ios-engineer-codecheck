@@ -30,8 +30,8 @@ class SearchRepositoriesViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.detailSegue {
-            guard let dtl = segue.destination as? ShowRepositoryDetailViewController else { return }
-            dtl.repositoryDetail = selectedRepositoryDatail
+            guard let nextVC = segue.destination as? ShowRepositoryDetailViewController else { return }
+            nextVC.repositoryDetail = selectedRepositoryDatail
         }
     }
 
