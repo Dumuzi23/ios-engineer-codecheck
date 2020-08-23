@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2035854024EBF6A500D07A33 /* SearchRepositoriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2035853F24EBF6A500D07A33 /* SearchRepositoriesManager.swift */; };
+		208CAEAE24F18E2300281126 /* GetWatchersCountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208CAEAD24F18E2300281126 /* GetWatchersCountManager.swift */; };
 		209C3D7524EC062700762E1D /* GetRepositoryImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209C3D7424EC062700762E1D /* GetRepositoryImageManager.swift */; };
 		209C3D7C24EE9AAF00762E1D /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209C3D7A24EE9AAF00762E1D /* RepositoryCell.swift */; };
 		209C3D7D24EE9AAF00762E1D /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209C3D7B24EE9AAF00762E1D /* RepositoryCell.xib */; };
@@ -49,6 +50,7 @@
 		11F9F8CD3F11E2CF230F66DF /* Pods-iOSEngineerCodeCheck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck.debug.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck/Pods-iOSEngineerCodeCheck.debug.xcconfig"; sourceTree = "<group>"; };
 		128A05FF0C54F0D23C8520C9 /* Pods-iOSEngineerCodeCheck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck/Pods-iOSEngineerCodeCheck.release.xcconfig"; sourceTree = "<group>"; };
 		2035853F24EBF6A500D07A33 /* SearchRepositoriesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoriesManager.swift; sourceTree = "<group>"; };
+		208CAEAD24F18E2300281126 /* GetWatchersCountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWatchersCountManager.swift; sourceTree = "<group>"; };
 		209C3D7424EC062700762E1D /* GetRepositoryImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRepositoryImageManager.swift; sourceTree = "<group>"; };
 		209C3D7A24EE9AAF00762E1D /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		209C3D7B24EE9AAF00762E1D /* RepositoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
@@ -130,8 +132,9 @@
 			isa = PBXGroup;
 			children = (
 				2035853F24EBF6A500D07A33 /* SearchRepositoriesManager.swift */,
-				209C3D7424EC062700762E1D /* GetRepositoryImageManager.swift */,
 				209C3D8224F0E0CF00762E1D /* GetSelectedRepositoryDetailManager.swift */,
+				208CAEAD24F18E2300281126 /* GetWatchersCountManager.swift */,
+				209C3D7424EC062700762E1D /* GetRepositoryImageManager.swift */,
 				209C3D8024F0D5C000762E1D /* RepositoryDetailModel.swift */,
 			);
 			path = Model;
@@ -482,6 +485,7 @@
 				BF0A658D244F2A3B00280FA6 /* ShowRepositoryDetailViewController.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
 				209C3D8324F0E0CF00762E1D /* GetSelectedRepositoryDetailManager.swift in Sources */,
+				208CAEAE24F18E2300281126 /* GetWatchersCountManager.swift in Sources */,
 				BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */,
 				209C3D8124F0D5C000762E1D /* RepositoryDetailModel.swift in Sources */,
 			);

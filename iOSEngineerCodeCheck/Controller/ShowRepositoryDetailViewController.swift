@@ -20,6 +20,7 @@ class ShowRepositoryDetailViewController: UIViewController {
 
     var repositoryDetail: RepositoryDetailModel?
     private let getRepositoriesImageManager = GetRepositoryImageManager()
+    private let getWatchersCountManager = GetWatchersCountManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +30,12 @@ class ShowRepositoryDetailViewController: UIViewController {
         titleLabel.text = detail.title
         languageLabel.text = "Written in \(detail.language)"
         starsCountLabel.text = "\(detail.starsCount) stars"
-        watchersCountLabel.text = "\(detail.watchersCount) watchers"
         forksCountLabel.text = "\(detail.forksCount) forks"
         openIssuesCountLabel.text = "\(detail.openIssuesCount) open issues"
-        getRepositoriesImageManager.setImage(with: avatarImageView, urlString: detail.avatarImageUrlString)
+        self.getRepositoriesImageManager.setImage(with: self.avatarImageView, urlString: detail.avatarImageUrlString)
+
+        // watchersCountを取得するには、別のURLを使用してAPIを叩く必要があるので、そのためのメソッドを使用する
+        self.getWatchersCountManager.setWatchersCount(label: self.watchersCountLabel, repositoryTitle: detail.title)
 
         titleLabel.adjustsFontSizeToFitWidth = true
     }
