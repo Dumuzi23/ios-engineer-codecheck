@@ -36,7 +36,6 @@ class SearchRepositoriesViewController: UITableViewController {
     }
 
     // MARK: TableView Datasource Methods
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repositoriesArray.count
     }
@@ -53,7 +52,6 @@ class SearchRepositoriesViewController: UITableViewController {
     }
 
     // MARK: TableView Delegate Methods
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedRepositoryDatail = getSelectedRepositoryDetailManager.getDetail(repositories: repositoriesArray, selectedIndex: indexPath.row)
 
@@ -61,7 +59,6 @@ class SearchRepositoriesViewController: UITableViewController {
     }
 
     // MARK: UIScrollViewDelegate
-
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         // スクロールしたとき、キーボードが閉じるようにする
         repositoriesSearchBar.resignFirstResponder()
@@ -70,7 +67,6 @@ class SearchRepositoriesViewController: UITableViewController {
 }
 
 // MARK: - UISearchBar Delegate Methods
-
 extension SearchRepositoriesViewController: UISearchBarDelegate {
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -89,15 +85,11 @@ extension SearchRepositoriesViewController: UISearchBarDelegate {
 }
 
 // MARK: - GithubSearchManager Delegate Methods
-
 extension SearchRepositoriesViewController: SearchRepositoriesManagerDelegate {
 
     func didUpdateRepositories(repositories: [[String: Any]]) {
         self.repositoriesArray = repositories
-
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
     }
 
     func didFailWithError(error: Error) {
