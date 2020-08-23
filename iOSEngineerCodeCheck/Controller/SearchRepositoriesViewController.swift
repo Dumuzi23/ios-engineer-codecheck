@@ -55,7 +55,6 @@ class SearchRepositoriesViewController: UITableViewController {
     // MARK: TableView Delegate Methods
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 画面遷移時に呼ばれる
         selectedRepositoryDatail = getSelectedRepositoryDetailManager.getDetail(repositories: repositoriesArray, selectedIndex: indexPath.row)
 
         performSegue(withIdentifier: K.detailSegue, sender: self)
@@ -75,7 +74,6 @@ class SearchRepositoriesViewController: UITableViewController {
 extension SearchRepositoriesViewController: UISearchBarDelegate {
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        // ↓こうすれば初期のテキストを消せる
         searchBar.text = ""
         return true
     }
