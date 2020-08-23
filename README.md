@@ -35,3 +35,17 @@ Issues を確認した上、本プロジェクトを [**Duplicate** してくだ
 | 中途／経験者 | 必須 | 必須 | 選択 |
 
 課題が完成したら、リポジトリーのアドレスを教えてください。
+
+## 完成アプリ
+
+### 使用方法
+
+### 工夫したところ
+- カスタムセルの使用
+- 正確なwatcher数は初期のURLだと取得できないため、別のURLを使用して取得(https://github.community/t/api-is-very-confusing-by-listing-stars-count-for-watchers-count-on-all-repos/13817)
+- CocoaPodsの使用
+- SwiftLintを使用したコードスタイルの管理
+
+### 苦労した点（できなかった点）
+- watcher数をリポジトリの詳細画面に遷移してから取得しているため、他の情報と比べて遅れて表示されてしまう
+- 上記を解決するため、検索画面を表示している段階でwatcher数を取得したかったが、うまく取得ができなかった
