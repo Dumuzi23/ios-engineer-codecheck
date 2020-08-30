@@ -10,33 +10,33 @@ import Foundation
 
 class GetSelectedRepositoryDetailManager {
 
-    func getDetail(repositories: [[String: Any]], selectedIndex: Int) -> RepositoryDetailModel {
-        let title = repositories[selectedIndex][K.parseData.title] as? String ?? {
+    func getDetail(repositories: [String: Any]) -> RepositoryDetailModel {
+        let title = repositories[K.parseData.title] as? String ?? {
             assertionFailure("Stringにキャストできませんでした")
             return ""
             }()
 
-        let language = repositories[selectedIndex][K.parseData.language] as? String ?? {
+        let language = repositories[K.parseData.language] as? String ?? {
             assertionFailure("Stringにキャストできませんでした")
             return "Unknown"
             }()
 
-        let stars = repositories[selectedIndex][K.parseData.starsCount] as? Int ?? {
+        let stars = repositories[K.parseData.starsCount] as? Int ?? {
             assertionFailure("Intにキャストできませんでした")
             return 0
             }()
-        let forks = repositories[selectedIndex][K.parseData.forksCount] as? Int ?? {
+        let forks = repositories[K.parseData.forksCount] as? Int ?? {
             assertionFailure("Intにキャストできませんでした")
             return 0
             }()
 
-        let openIssue = repositories[selectedIndex][K.parseData.openIssuesCount] as? Int ?? {
+        let openIssue = repositories[K.parseData.openIssuesCount] as? Int ?? {
             assertionFailure("Intにキャストできませんでした")
             return 0
             }()
 
         // アバター画像の情報は階層が違うので、追加の処理が必要
-        guard let owner = repositories[selectedIndex]["owner"] as? [String: Any] else { fatalError("アバター画像のURLを取得できませんでした") }
+        guard let owner = repositories["owner"] as? [String: Any] else { fatalError("アバター画像のURLを取得できませんでした") }
         guard let avatarImageUrlString = owner[K.parseData.avatarImage] as? String else { fatalError("アバター画像のURLを取得できませんでした") }
 
         let selectedRepositoryDetail = RepositoryDetailModel(title: title, language: language, starsCount: stars, forksCount: forks, openIssuesCount: openIssue, avatarImageUrlString: avatarImageUrlString)
