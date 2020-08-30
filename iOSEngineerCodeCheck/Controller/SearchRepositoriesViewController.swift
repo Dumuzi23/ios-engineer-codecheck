@@ -52,7 +52,9 @@ class SearchRepositoriesViewController: UITableViewController {
 
     // MARK: TableView Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRepositoryDetail = getSelectedRepositoryDetailManager.getDetail(repositories: repositoriesArray, selectedIndex: indexPath.row)
+        let repositoryDetail = repositoriesArray[indexPath.row]
+
+        selectedRepositoryDetail = getSelectedRepositoryDetailManager.getDetail(repositories: repositoryDetail)
 
         performSegue(withIdentifier: K.detailSegue, sender: self)
     }
