@@ -16,7 +16,6 @@ class SearchRepositoriesViewController: UITableViewController {
     private var selectedRepositoryDetail: RepositoryDetailModel?
 
     private var searchRepositoriesManager = SearchRepositoriesManager()
-    private var getSelectedRepositoryDetailManager = GetSelectedRepositoryDetailManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +29,10 @@ class SearchRepositoriesViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.detailSegue {
             guard let nextVC = segue.destination as? ShowRepositoryDetailViewController else { return }
-            nextVC.repositoryDetail = selectedRepositoryDetail
+            if let selectedRow = tableView.indexPathForSelectedRow {
+                let repositoryDetail = repositoriesArray[selectedRow[1]]
+                nextVC.repositoryDetail = repositoryDetail
+            }
         }
     }
 
@@ -52,10 +54,6 @@ class SearchRepositoriesViewController: UITableViewController {
 
     // MARK: TableView Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let repositoryDetail = repositoriesArray[indexPath.row]
-
-        selectedRepositoryDetail = getSelectedRepositoryDetailManager.getDetail(repositories: repositoryDetail)
-
         performSegue(withIdentifier: K.detailSegue, sender: self)
     }
 
