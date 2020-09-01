@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class GetWatchersCountManager {
+class WatchersCountManager {
 
     private let getwatchersURL = "https://api.github.com/repos"
 
