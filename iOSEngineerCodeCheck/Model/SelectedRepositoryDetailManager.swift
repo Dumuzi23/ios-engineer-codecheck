@@ -25,6 +25,12 @@ class SelectedRepositoryDetailManager {
             assertionFailure("Intにキャストできませんでした")
             return 0
             }()
+
+        let watchers = repositories[K.parseData.watchersCount] as? Int ?? {
+            assertionFailure("Intにキャストできませんでした")
+            return 0
+        }()
+
         let forks = repositories[K.parseData.forksCount] as? Int ?? {
             assertionFailure("Intにキャストできませんでした")
             return 0
@@ -39,7 +45,7 @@ class SelectedRepositoryDetailManager {
         guard let owner = repositories["owner"] as? [String: Any] else { fatalError("アバター画像のURLを取得できませんでした") }
         guard let avatarImageUrlString = owner[K.parseData.avatarImage] as? String else { fatalError("アバター画像のURLを取得できませんでした") }
 
-        let selectedRepositoryDetail = RepositoryDetailModel(title: title, language: language, starsCount: stars, forksCount: forks, openIssuesCount: openIssue, avatarImageUrlString: avatarImageUrlString)
+        let selectedRepositoryDetail = RepositoryDetailModel(title: title, language: language, starsCount: stars, watchersCount: watchers, forksCount: forks, openIssuesCount: openIssue, avatarImageUrlString: avatarImageUrlString)
 
         return selectedRepositoryDetail
     }
