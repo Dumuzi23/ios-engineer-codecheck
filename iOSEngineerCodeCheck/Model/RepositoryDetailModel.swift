@@ -13,6 +13,7 @@ struct RepositoryDetailModel {
     let title: String
     let language: String
     let starsCount: Int
+    let watchersCount: Int
     let forksCount: Int
     let openIssuesCount: Int
     let avatarImageUrlString: String
