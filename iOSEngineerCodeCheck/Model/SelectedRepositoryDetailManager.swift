@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GetSelectedRepositoryDetailManager {
+class SelectedRepositoryDetailManager {
 
     func getDetail(repositories: [String: Any]) -> RepositoryDetailModel {
         let title = repositories[K.parseData.title] as? String ?? {

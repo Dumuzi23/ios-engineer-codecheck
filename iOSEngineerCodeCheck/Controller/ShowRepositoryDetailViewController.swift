@@ -19,26 +19,26 @@ class ShowRepositoryDetailViewController: UIViewController {
     @IBOutlet weak var openIssuesCountLabel: UILabel!
 
     var repositoryDetail: [String: Any]?
-    private let getAvatarImageManager = GetAvatarImageManager()
-    private let getWatchersCountManager = GetWatchersCountManager()
-    private let getSelectedRepositoryDetailManager = GetSelectedRepositoryDetailManager()
+    private let avatarImageManager = AvatarImageManager()
+    private let watchersCountManager = WatchersCountManager()
+    private let selectedRepositoryDetailManager = SelectedRepositoryDetailManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         guard let detail = repositoryDetail else { return }
 
-        let parsedRepositoryDetail = getSelectedRepositoryDetailManager.getDetail(repositories: detail)
+        let parsedRepositoryDetail = selectedRepositoryDetailManager.getDetail(repositories: detail)
 
         titleLabel.text = parsedRepositoryDetail.title
         languageLabel.text = "Written in \(parsedRepositoryDetail.language)"
         starsCountLabel.text = "\(parsedRepositoryDetail.starsCount) stars"
         forksCountLabel.text = "\(parsedRepositoryDetail.forksCount) forks"
         openIssuesCountLabel.text = "\(parsedRepositoryDetail.openIssuesCount) open issues"
-        getAvatarImageManager.setImage(with: avatarImageView, urlString: parsedRepositoryDetail.avatarImageUrlString)
+        avatarImageManager.setImage(with: avatarImageView, urlString: parsedRepositoryDetail.avatarImageUrlString)
 
         // watchersCountを取得するには、別のURLを使用してAPIを叩く必要があるので、そのためのメソッドを使用する
-        getWatchersCountManager.setWatchersCount(label: watchersCountLabel, repositoryTitle: parsedRepositoryDetail.title)
+        watchersCountManager.setWatchersCount(label: watchersCountLabel, repositoryTitle: parsedRepositoryDetail.title)
 
         titleLabel.adjustsFontSizeToFitWidth = true
     }
