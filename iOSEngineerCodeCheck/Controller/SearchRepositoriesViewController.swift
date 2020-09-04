@@ -12,8 +12,8 @@ class SearchRepositoriesViewController: UITableViewController {
 
     @IBOutlet weak var repositoriesSearchBar: UISearchBar!
 
-    private var repositoriesArray: [[String: Any]]=[]
-    private var selectedRepositoryDetail: RepositoryDetailModel?
+    private var repositoriesDetailArray: [RepositoryDetailModel] = []
+//    private var selectedRepositoryDetail: RepositoryDetailModel?
 
     private var searchRepositoriesManager = SearchRepositoriesManager()
 
@@ -30,7 +30,7 @@ class SearchRepositoriesViewController: UITableViewController {
         if segue.identifier == K.detailSegue {
             guard let nextVC = segue.destination as? ShowRepositoryDetailViewController else { return }
             if let selectedRow = tableView.indexPathForSelectedRow {
-                let repositoryDetail = repositoriesArray[selectedRow[1]]
+                let repositoryDetail = repositoriesDetailArray[selectedRow[1]]
                 nextVC.repositoryDetail = repositoryDetail
             }
         }
@@ -38,16 +38,15 @@ class SearchRepositoriesViewController: UITableViewController {
 
     // MARK: TableView Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repositoriesArray.count
+        return repositoriesDetailArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! RepositoryCell
-        let repository = repositoriesArray[indexPath.row]
 
-        cell.titleLabel.text = repository[K.parseData.title] as? String ?? ""
-        cell.languageLabel.text = repository[K.parseData.language] as? String ?? "Unknown"
-        cell.starsCountLabel.text = "\(repository[K.parseData.starsCount] as? Int ?? 0)"
+        cell.titleLabel.text = repositoriesDetailArray[indexPath.row].title
+        cell.languageLabel.text = repositoriesDetailArray[indexPath.row].language
+        cell.starsCountLabel.text = "\(repositoriesDetailArray[indexPath.row].starsCount)"
         cell.tag = indexPath.row
         return cell
     }
@@ -86,8 +85,8 @@ extension SearchRepositoriesViewController: UISearchBarDelegate {
 // MARK: - GithubSearchManager Delegate Methods
 extension SearchRepositoriesViewController: SearchRepositoriesManagerDelegate {
 
-    func didUpdateRepositories(repositories: [[String: Any]]) {
-        self.repositoriesArray = repositories
+    func didUpdateRepositories(repositoriesDetail: [RepositoryDetailModel]) {
+        self.repositoriesDetailArray = repositoriesDetail
         self.tableView.reloadData()
     }
 
