@@ -16,6 +16,6 @@ struct RepositoryDetailModel {
     let watchersCount: Int
     let forksCount: Int
     let openIssuesCount: Int
-    let avatarImageUrlString: String
+    let avatarImageURL: String
 
 }

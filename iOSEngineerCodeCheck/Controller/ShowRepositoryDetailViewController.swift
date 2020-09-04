@@ -18,24 +18,22 @@ class ShowRepositoryDetailViewController: UIViewController {
     @IBOutlet weak var forksCountLabel: UILabel!
     @IBOutlet weak var openIssuesCountLabel: UILabel!
 
-    var repositoryDetail: [String: Any]?
+    var repositoryDetail: RepositoryDetailModel?
     private let avatarImageManager = AvatarImageManager()
-    private let selectedRepositoryDetailManager = SelectedRepositoryDetailManager()
+//    private let selectedRepositoryDetailManager = SelectedRepositoryDetailManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         guard let detail = repositoryDetail else { return }
 
-        let parsedRepositoryDetail = selectedRepositoryDetailManager.getDetail(repositories: detail)
-
-        titleLabel.text = parsedRepositoryDetail.title
-        languageLabel.text = "Written in \(parsedRepositoryDetail.language)"
-        starsCountLabel.text = "\(parsedRepositoryDetail.starsCount) stars"
-        watchersCountLabel.text = "\(parsedRepositoryDetail.watchersCount) watchers"
-        forksCountLabel.text = "\(parsedRepositoryDetail.forksCount) forks"
-        openIssuesCountLabel.text = "\(parsedRepositoryDetail.openIssuesCount) open issues"
-        avatarImageManager.setImage(with: avatarImageView, urlString: parsedRepositoryDetail.avatarImageUrlString)
+        titleLabel.text = detail.title
+        languageLabel.text = "Written in \(detail.language)"
+        starsCountLabel.text = "\(detail.starsCount) stars"
+        watchersCountLabel.text = "\(detail.watchersCount) watchers"
+        forksCountLabel.text = "\(detail.forksCount) forks"
+        openIssuesCountLabel.text = "\(detail.openIssuesCount) open issues"
+        avatarImageManager.setImage(with: avatarImageView, urlString: detail.avatarImageURL)
 
         titleLabel.adjustsFontSizeToFitWidth = true
     }
