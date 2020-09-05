@@ -30,16 +30,12 @@ class SearchRepositoriesManager {
         AF.request(urlString, method: .get).responseJSON { (response) in
             switch response.result {
             case .success:
-                print("success!")
                 guard let safeData = response.data else { return }
-//                guard let obj = try! JSONSerialization.jsonObject(with: safeData) as? [String: Any] else { return }
-//                guard let items = obj["items"] as? [[String: Any]] else x{ return }
-                print(safeData)
+
                 if let repositoriesDetail = self.parseJSON(safeData) {
                     self.delegate?.didUpdateRepositories(repositoriesDetail: repositoriesDetail)
                 }
             case .failure(let error):
-                print("fail")
                 self.delegate?.didFailWithError(error: error)
             }
         }
