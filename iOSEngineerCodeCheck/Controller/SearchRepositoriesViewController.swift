@@ -20,6 +20,8 @@ class SearchRepositoriesViewController: UITableViewController {
 
         repositoriesSearchBar.delegate = self
         searchRepositoriesManager.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
 
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
     }
