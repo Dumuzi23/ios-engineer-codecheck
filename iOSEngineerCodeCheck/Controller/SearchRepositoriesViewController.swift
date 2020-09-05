@@ -13,8 +13,6 @@ class SearchRepositoriesViewController: UITableViewController {
     @IBOutlet weak var repositoriesSearchBar: UISearchBar!
 
     private var repositoriesDetailArray: [RepositoryDetailModel] = []
-//    private var selectedRepositoryDetail: RepositoryDetailModel?
-
     private var searchRepositoriesManager = SearchRepositoriesManager()
 
     override func viewDidLoad() {

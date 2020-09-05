@@ -20,7 +20,6 @@ class ShowRepositoryDetailViewController: UIViewController {
 
     var repositoryDetail: RepositoryDetailModel?
     private let avatarImageManager = AvatarImageManager()
-//    private let selectedRepositoryDetailManager = SelectedRepositoryDetailManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
