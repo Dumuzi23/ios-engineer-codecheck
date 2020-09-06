@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class ShowRepositoryDetailViewController: UIViewController {
 
@@ -19,7 +20,6 @@ class ShowRepositoryDetailViewController: UIViewController {
     @IBOutlet weak var openIssuesCountLabel: UILabel!
 
     var repositoryDetail: RepositoryDetailModel?
-    private let avatarImageManager = AvatarImageManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,10 @@ class ShowRepositoryDetailViewController: UIViewController {
         watchersCountLabel.text = "\(detail.watchersCount) watchers"
         forksCountLabel.text = "\(detail.forksCount) forks"
         openIssuesCountLabel.text = "\(detail.openIssuesCount) open issues"
-        avatarImageManager.setImage(with: avatarImageView, urlString: detail.avatarImageURL)
+
+        if let url = URL(string: detail.avatarImageURL) {
+            avatarImageView.af.setImage(withURL: url)
+        }
 
         titleLabel.adjustsFontSizeToFitWidth = true
     }
