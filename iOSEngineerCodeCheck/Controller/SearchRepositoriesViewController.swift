@@ -23,7 +23,8 @@ class SearchRepositoriesViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
 
-        tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
+//        tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
+        tableView.register(R.nib.repositoryCell)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -42,7 +43,8 @@ class SearchRepositoriesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! RepositoryCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! RepositoryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.reusableCell, for: indexPath)!
 
         cell.titleLabel.text = repositoriesDetailArray[indexPath.row].title
         cell.languageLabel.text = repositoriesDetailArray[indexPath.row].language
