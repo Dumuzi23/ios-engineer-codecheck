@@ -6,12 +6,14 @@ PODS:
     - R.swift.Library (~> 5.2.0)
   - R.swift.Library (5.2.0)
   - SwiftLint (0.39.2)
+  - ViewAnimator (2.7.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - AlamofireImage (~> 4.1)
   - R.swift
   - SwiftLint
+  - ViewAnimator
 
 SPEC REPOS:
   trunk:
@@ -20,6 +22,7 @@ SPEC REPOS:
     - R.swift
     - R.swift.Library
     - SwiftLint
+    - ViewAnimator
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
@@ -27,7 +30,8 @@ SPEC CHECKSUMS:
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
   R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
+  ViewAnimator: 5af1c6f3b310f012bf081259c43717aa54fbae73
 
-PODFILE CHECKSUM: 0a23c01445e1959db0e7d47833ac0fb2fcf2c60d
+PODFILE CHECKSUM: 561e2c213b33e6a9bbae6a9cb361b3778a0237d2
 
 COCOAPODS: 1.9.0

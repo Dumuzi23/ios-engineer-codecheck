@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ViewAnimator
 
 class SearchRepositoriesViewController: UITableViewController {
 
@@ -14,6 +15,8 @@ class SearchRepositoriesViewController: UITableViewController {
 
     private var repositoriesDetailArray: [RepositoryDetailModel] = []
     private var searchRepositoriesManager = SearchRepositoriesManager()
+
+    private let animations = [AnimationType.from(direction: .left, offset: 100.0)]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +93,7 @@ extension SearchRepositoriesViewController: SearchRepositoriesManagerDelegate {
     func didUpdateRepositories(repositoriesDetail: [RepositoryDetailModel]) {
         self.repositoriesDetailArray = repositoriesDetail
         self.tableView.reloadData()
+        UIView.animate(views: self.tableView.visibleCells, animations: self.animations)
     }
 
     func didFailWithError(error: Error) {
