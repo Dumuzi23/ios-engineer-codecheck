@@ -16,7 +16,7 @@ class SearchRepositoriesViewController: UITableViewController {
     private var repositoriesDetailArray: [RepositoryDetailModel] = []
     private var searchRepositoriesManager = SearchRepositoriesManager()
 
-    private let animations = [AnimationType.from(direction: .left, offset: 100.0)]
+    private let animations = [AnimationType.from(direction: .right, offset: 100.0)]
 
     override func viewDidLoad() {
         super.viewDidLoad()
